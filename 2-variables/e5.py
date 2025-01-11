@@ -3,7 +3,7 @@ import typing
 k: float = 8.85e-12
 
 while True:
-    datos:str = input('Datos en la forma: q1 q2 r .SIN Espacios: ')
+    datos:str = input('Datos en la forma: q1 q2 r.SIN Espacios: ')
     if (len(datos) == 5):
         q1:float = int(datos[0])
         q2:float = int(datos[2])
