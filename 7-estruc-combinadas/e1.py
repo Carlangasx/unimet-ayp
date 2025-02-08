@@ -7,9 +7,9 @@ accounts = [
     [3, 5, 10, 12]
 ]
 
-for i in range(len(accounts)):
-    for j in range(len(accounts[i])):
-        new_list.append(accounts[i][j])
+for account in accounts:
+    for value in account:
+        new_list.append(value)
 
 new_list.sort()
 print(f'{new_list}')
