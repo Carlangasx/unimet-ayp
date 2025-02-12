@@ -1,0 +1,18 @@
+[
+  {
+    "first_name": "Jose",
+    "last_name": "Quevedo",
+    "address": "Los Naranjos",
+    "phone": "04121111111",
+    "dni": "27014788",
+    "accounts": [
+      {
+        "number": "1",
+        "balance": 515.0,
+        "date": "28/10/24",
+        "account_type": "ahorro"
+      }
+    ],
+    "loans": []
+  }
+]

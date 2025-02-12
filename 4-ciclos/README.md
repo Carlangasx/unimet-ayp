@@ -20,7 +20,7 @@ Realiza un algoritmo que reciba y sume números enteros positivos, hasta que rec
 
 ## Ejercicio 5
 
-Realice un algoritmo que dado un número, tiene que imprimir desde el numero hasta 1:
+Realice un algoritmo que dado un número, tiene que imprimir:
 
 En el caso de que el número sea divisible por 3 fizz.
 

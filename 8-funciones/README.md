@@ -1,35 +1,5 @@
 # Ejercicios clase 9: Funciones
 
-## Ejercicio 0
-
-Dada la lista _orders_, que representa las ordenes que ciertos clientes han hecho en un restaurante. Específicamente, `orders[i] = [customer_name,table_number,food_item]`
-
-Imprima la tabla _display_table_, que es una tabla cuyas filas denotan cuantos items de comida cada mesa ha ordenado, en donde, la primera columna es el número de la mesa y el resto de las columnas corresponden al nombre de los platos ordenados alfabéticamente. La primera fila debe ser el encabezado de la tabla.
-
-**Input:**
-
-```python
-orders = [
-    ["David", "3", "Ceviche"],
-    ["Corina", "10", "Beef Burrito"],
-    ["David", "3", "Fried Chicken"],
-    ["Carla", "5", "Water"],
-    ["Carla", "5", "Ceviche"],
-    ["Rous", "3", "Ceviche"]
-  ]
-```
-
-**Output:**
-
-```python
-[
-  ["Table","Beef Burrito","Ceviche","Fried Chicken","Water"],
-  ["3","0","2","1","0"],
-  ["5","0","1","0","1"],
-  ["10","1","0","0","0"]
-]
-```
-
 ## Ejercicio 1
 
 Elabore una función que dado un número determine si es un número primo o no

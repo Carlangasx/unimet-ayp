@@ -1,0 +1,5 @@
+- Trabajor
+  - Ingeniero
+  - Arquitecto
+  - Obrero
+- Factura/Recibo/Nomina 
