@@ -1,48 +1,50 @@
-# Modelar o hacer el sistema de un banco
+# Operaciones básicas de manejo de cuenta:
+#  - Ver el balance de la cuenta
+#  - Retirar dinero
+#  - Depositar
 
-account_balance: float = 100000.0
+balance: float = 0.0
 
-# Hacer un menu
+ans = 'y'
 
-menu = """
-1. DEPOSITAR
-2. RETIRAR
-3. SOLICITAR PRESTAMO -> NOTA: Solo se podra prestar el 30% del saldo disponible
-"""
+while ans == 'y':
 
-option = int(input(menu))
+  option = input('''
+    BIENVENIDO AL BANCO UNIMET
+    -------------------------
+    1. Depositar
+    2. Retirar
+  ''')
 
-if option == 1:
-  # 1. Depositar
-  amount = float(input("Por favor ingrese un monto a depositar: "))
-  # account_balance = account_balance + amount
-  account_balance += amount
-  print(f"Nuevo balance disponible {account_balance}")
-elif option == 2: # else if -> sino si
-  # 2. Retirar Dinero
-  print(f'El monto disponible para retiros es de: {account_balance}')
-  amount = float(input("Por favor ingrese el monto a retirar: "))
+  if option == '1':
+    # Monto para depositar
+    amount: str = input('Por favor ingrese el valor a depositar: ')
+    while not amount.isnumeric():
+      if '.' in amount:
+        break
+      amount = input('Por favor ingrese el valor a depositar: ')
+    amount: float = float(amount)
+    balance += amount # balance = balance + amount
+    print(f'El balance disponible es {balance}')
 
-  if amount <= account_balance:
-    account_balance -= amount
-    print(f"Nuevo balance disponible {account_balance}")
-  else: # sino
-    print('No se puede retirar mas dinero del disponible!')
-elif option == 3:
-  # Hacer un prestamos
-  # Como maximo del 30% del saldo disponible
-  amount = float(input('Ingrese el monto a solicitar: '))
-  max_amount = account_balance * (30/100)
-
-  if amount <= max_amount:
-    time = 12 # months
-    interest_rate = 16 / 100
-    interest = amount * ((1 + interest_rate/time) ** time) - amount
-    monthly_payments = (amount + interest) / time
-    print(f'El prestamo debera pagarse mensualmente con un cuota de {monthly_payments}')
+  elif option == '2':
+    # Monto para retirar
+    amount: str = input('Por favor ingrese el valor a depositar: ')
+    while not amount.isnumeric():
+      if '.' in amount:
+        break
+      amount = input('Por favor ingrese el valor a depositar: ')
+    amount: float = float(amount)
+    if amount <= balance:
+      balance -= amount
+      print(f'El balance disponible es {balance}')
+    else:
+      print(f'El monto {amount} es mayor que el balance disponible: {balance}')
   else:
-    print('No tienes suficiente dinero para fondear el prestamo!')
+    print('Haz ingresado un dato invalido')
 
-else:
-  print('Haz ingresado un opción invalida!')
+  ans = input('Desea continuar ejecutando el programa (y/n)?: ').lower()
+
+  while ans != 'y' and ans != 'n':
+    ans = input('Ingrese un dato valido: Desea continuar ejecutando el programa (y/n)?: ').lower()
 
