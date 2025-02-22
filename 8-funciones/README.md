@@ -14,7 +14,7 @@ print(is_prime(6)) # False
 ## Ejercicio 2
 
 Realice un función que dado una lista de números `nums`, para cada número _i_ (`nums[i]`) determine cuantos números dentro de la lista son menores que el, es decir, para cada `nums[i]` debe contar los números `nums[j]` tal que `nums[j] < nums[i]` y `j!=i`. Debe regresar su respuesta como otra lista.
-
+ 
 **Input:**
 
 ```python
