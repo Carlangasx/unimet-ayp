@@ -7,7 +7,7 @@ def is_prime(num):
     aux += 1
   return True
 
-def is_defficent(num):
+def is_defficent(num): 
   aux = 1
   acc = 0
   while aux < num:

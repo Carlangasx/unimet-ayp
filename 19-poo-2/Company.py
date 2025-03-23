@@ -149,9 +149,9 @@ class Company:
 
   def menu(self):
     option = input(f'''1. Crear trabajador
-                   2. Pagar trabajador
-                   3. Ver estadisticas
-                   ''')
+2. Pagar trabajador
+3. Ver estadisticas
+''') 
     dni = input('Por favor ingrese la cédula: ')
     if option == '1':
       worker = self.search_worker(dni)

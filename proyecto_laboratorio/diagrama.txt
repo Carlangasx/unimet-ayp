@@ -1,0 +1,121 @@
+Proyecto Laboratorio Químico - Diagrama de Clases
+--------------------------------------------------
+
+1. Gestión de Reactivos
+------------------------
+
++-----------------------------------------------------+
+|                     Reactivo                        |
++-----------------------------------------------------+
+| - id: int                                           |
+| - nombre: str                                       |
+| - descripcion: str                                  |
+| - costo: float                                      |
+| - categoria: str                                    |
+| - inventario: float                                 |
+| - unidad_medida: str                                |
+| - conversiones: list[dict]                          |
+| - fecha_caducidad: datetime (opcional)              |
+| - minimo: float                                     |
++-----------------------------------------------------+
+| + to_dict() -> dict                                 |
+| + from_dict(data: dict) -> Reactivo                 |
++-----------------------------------------------------+
+
++-----------------------------------------------------+
+|                 GestorReactivos                     |
++-----------------------------------------------------+
+| - reactivos: list[Reactivo]                         |
++-----------------------------------------------------+
+| + agregar_reactivo(reactivo: Reactivo): None        |
+| + eliminar_reactivo(nombre: str): bool              |
+| + editar_reactivo(nombre: str, **kwargs): None       |
+| + buscar_reactivo(nombre: str): Reactivo             |
+| + cargar_desde_api(url: str): None                  |
+| + cargar_desde_json(ruta: str): None                |
+| + guardar_en_json(ruta: str): None                  |
+| + cambiar_unidad(nombre: str, nueva_unidad: str): None|
++-----------------------------------------------------+
+
+
+2. Gestión de Experimentos
+---------------------------
+
++-----------------------------------------------------+
+|                    RecetaBase                       |
++-----------------------------------------------------+
+| - id: int                                           |
+| - nombre: str                                       |
+| - objetivo: str                                     |
+| - reactivos_utilizados: list[ (Reactivo, float) ]   |
+| - procedimiento: str                                |
++-----------------------------------------------------+
+| + to_dict() -> dict                                 |
++-----------------------------------------------------+
+
++-----------------------------------------------------+
+|                    Experimento                      |
++-----------------------------------------------------+
+| - id: int                                           |
+| - receta_id: RecetaBase                             |
+| - responsables: list[str]                           |
+| - fecha: datetime                                   |
+| - costo: float                                      |
+| - resultado: any                                    |
++-----------------------------------------------------+
+| + realizar_experimento(inventario: dict): None      |
+| + guardar_en_json(): None                           |
++-----------------------------------------------------+
+
+
+3. Gestión de Resultados
+-------------------------
+
++-----------------------------------------------------+
+|              ResultadoExperimento                   |
++-----------------------------------------------------+
+| - experimento: Experimento                          |
+| - parametros_aceptables: dict                       |
+| - resultado_evaluado: dict                          |
++-----------------------------------------------------+
+| + _evaluar_resultado() -> dict                      |
+| + es_exitoso() -> bool                              |
+| + graficar_resultados() -> None                     |
+| + guardar_evaluacion(archivo: str="evaluaciones.json")|
+|      -> None                                        |
++-----------------------------------------------------+
+
+
+4. Indicadores de Gestión (Estadísticas)
+----------------------------------------
+
++-----------------------------------------------------+
+|               IndicadoresGestion                    |
++-----------------------------------------------------+
+| - datos: dict                                       |
++-----------------------------------------------------+
+| + investigadores_mas_activos() -> list[str]         |
+| + experimento_mas_hecho() -> Experimento            |
+| + experimento_menos_hecho() -> Experimento          |
+| + reactivos_alta_rotacion(n: int) -> list[Reactivo]   |
+| + reactivos_mayor_desperdicio(n: int) -> list[Reactivo]|
+| + reactivos_mas_vencidos() -> list[Reactivo]          |
+| + experimentos_fallidos() -> int                    |
+| + graficar_estadisticas() -> None                   |
++-----------------------------------------------------+
+
+
+Relaciones entre clases:
+------------------------
+
+- Un objeto GestorReactivos contiene una lista de objetos Reactivo.
+- Una RecetaBase se compone de varios reactivos (cada uno con su cantidad) y define el procedimiento.
+- Un Experimento se basa en una RecetaBase, tiene responsables, fecha, y calcula un costo asociado.
+- ResultadoExperimento evalúa los resultados obtenidos de un Experimento en función de parámetros aceptables.
+- IndicadoresGestion utiliza la información de reactivos y experimentos para generar estadísticas y gráficos.
+
+--------------------------------------------------
+Observaciones:
+- Se deben implementar validaciones en setters y métodos (por ejemplo, para el costo o inventario negativo).
+- La persistencia de datos se realiza mediante lectura y escritura en archivos JSON.
+- El diseño sigue el principio de separar cada módulo (reactivos, experimentos, resultados y estadísticas) en clases con responsabilidades claras.

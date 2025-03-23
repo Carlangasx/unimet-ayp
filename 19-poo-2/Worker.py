@@ -5,7 +5,7 @@ class Worker:
     self.last_name = last_name
     self.dni = dni
 
-  def __str__(self):
+  def __str__(self): 
     return f'{self.first_name} {self.last_name} - {self.dni}'
 
 
